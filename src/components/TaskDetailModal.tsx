@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IonModal, IonIcon, IonToast } from '@ionic/react';
-import { closeOutline, createOutline, calendarOutline, imageOutline, documentAttachOutline, trashOutline, checkmarkCircleOutline } from 'ionicons/icons';
+import { closeOutline, createOutline, calendarOutline, imageOutline, documentAttachOutline, trashOutline, checkmarkCircleOutline, documentOutline, documentTextOutline, colorPaletteOutline, barChartOutline, attachOutline } from 'ionicons/icons';
 import { Task, Label, Priority } from '../models/types';
 import { useTaskStore } from '../store/useTaskStore';
 import ChecklistSection from './ChecklistSection';
@@ -100,8 +100,8 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
   };
 
   const getAttIcon = (t: string) => {
-    const map: Record<string, string> = { pdf: '📄', doc: '📝', docx: '📝', png: '🖼️', jpg: '🖼️', fig: '🎨', figma: '🎨', xlsx: '📊', csv: '📊', txt: '📃' };
-    return map[t] || '📎';
+    const map: Record<string, any> = { pdf: documentOutline, doc: documentTextOutline, docx: documentTextOutline, png: imageOutline, jpg: imageOutline, fig: colorPaletteOutline, figma: colorPaletteOutline, xlsx: barChartOutline, csv: barChartOutline, txt: documentTextOutline };
+    return map[t] || attachOutline;
   };
 
   return (
@@ -214,7 +214,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
                     <div className="attachment-list">
                       {task.attachments.map((att) => (
                         <div key={att.id} className="attachment-item">
-                          <span className="attachment-icon">{getAttIcon(att.type)}</span>
+                          <IonIcon icon={getAttIcon(att.type)} className="attachment-icon" />
                           <span className="attachment-name">{att.name}</span>
                           <button className="attachment-remove" onClick={() => removeAttachment(task.id, att.id)}><IonIcon icon={closeOutline} /></button>
                         </div>

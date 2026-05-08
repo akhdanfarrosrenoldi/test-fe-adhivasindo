@@ -1,4 +1,6 @@
 import React from 'react';
+import { IonIcon } from '@ionic/react';
+import { addOutline } from 'ionicons/icons';
 import { TeamMember } from '../models/types';
 import { useTaskStore } from '../store/useTaskStore';
 import './AvatarGroup.css';
@@ -64,9 +66,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
       )}
       {onAdd && (
         <button className="avatar-add-btn" onClick={onAdd} title="Add assignee">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M6 1V11M1 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <IonIcon icon={addOutline} />
         </button>
       )}
     </div>

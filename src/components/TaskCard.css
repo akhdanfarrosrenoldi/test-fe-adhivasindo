@@ -39,8 +39,28 @@
   object-fit: cover;
 }
 
-.task-card__label {
+.task-card__label-wrapper {
   margin-bottom: 8px;
+}
+
+.task-card__label {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.task-card__progress {
+  height: 3px;
+  background: #E2E8F0;
+  border-radius: 2px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.task-card__progress-fill {
+  height: 100%;
+  background: #3B82F6;
+  border-radius: 2px;
+  transition: width 0.3s ease;
 }
 
 .task-card__title {
@@ -67,18 +87,20 @@
   align-items: center;
   gap: 4px;
   font-size: 11.5px;
-  color: #64748B;
-  background: #FEF2F2;
+  font-weight: 600;
+  color: #0284C7;
+  background: #E0F2FE;
   padding: 3px 8px;
   border-radius: 6px;
 }
 
 .task-card__due ion-icon {
   font-size: 13px;
-  color: #EF4444;
+  color: #0284C7;
 }
 
-.task-card__checklist-count {
+.task-card__checklist-count,
+.task-card__attachment-count {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -86,7 +108,8 @@
   color: #64748B;
 }
 
-.task-card__checklist-count ion-icon {
+.task-card__checklist-count ion-icon,
+.task-card__attachment-count ion-icon {
   font-size: 14px;
   color: #94A3B8;
 }

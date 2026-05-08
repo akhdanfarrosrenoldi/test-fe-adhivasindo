@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { IonIcon, IonToast } from '@ionic/react';
-import { funnelOutline, searchOutline, downloadOutline, personAddOutline, closeOutline } from 'ionicons/icons';
+import { funnelOutline, searchOutline, downloadOutline, pushOutline, personAddOutline, closeOutline, lockClosedOutline, chevronDownOutline, earthOutline } from 'ionicons/icons';
 import { useTaskStore } from '../store/useTaskStore';
 import AvatarGroup from './AvatarGroup';
 import FilterBar from './FilterBar';
@@ -64,9 +64,9 @@ const BoardHeader: React.FC = () => {
       <div className="board-header">
         <div className="board-header-left">
           <div className="board-name">
-            <span className="board-icon">🔒</span>
+            <IonIcon icon={lockClosedOutline} className="board-icon" />
             <span className="board-title">Adhivasindo</span>
-            <svg className="board-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <IonIcon icon={chevronDownOutline} className="board-chevron" />
           </div>
           <div className="board-team">
             <AvatarGroup memberIds={members.map((m) => m.id)} maxDisplay={5} size="md" />
@@ -86,15 +86,15 @@ const BoardHeader: React.FC = () => {
 
           <div className="export-wrapper">
             <button className="header-btn" onClick={() => setShowExportMenu(!showExportMenu)}>
-              <IonIcon icon={downloadOutline} />
+              <IonIcon icon={earthOutline} />
               <span>Export / Import</span>
             </button>
             {showExportMenu && (
               <>
                 <div className="export-backdrop" onClick={() => setShowExportMenu(false)} />
                 <div className="export-menu">
-                  <button onClick={handleExport}>📤 Export as JSON</button>
-                  <button onClick={() => fileInputRef.current?.click()}>📥 Import from JSON</button>
+                  <button onClick={handleExport}><IonIcon icon={pushOutline} /> Export as JSON</button>
+                  <button onClick={() => fileInputRef.current?.click()}><IonIcon icon={downloadOutline} /> Import from JSON</button>
                 </div>
               </>
             )}

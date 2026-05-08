@@ -2,7 +2,7 @@ import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { IonIcon } from '@ionic/react';
-import { calendarOutline, checkboxOutline, expandOutline } from 'ionicons/icons';
+import { calendarOutline, checkboxOutline, expandOutline, attachOutline } from 'ionicons/icons';
 import { Task } from '../models/types';
 import LabelBadge from './LabelBadge';
 import AvatarGroup from './AvatarGroup';
@@ -33,6 +33,12 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
   const checkedCount = task.checklist.filter((c) => c.checked).length;
   const totalCount = task.checklist.length;
 
+  const getProgress = () => {
+    if (!task.checklist || task.checklist.length === 0) return 0;
+    const completed = task.checklist.filter(i => i.checked).length;
+    return (completed / task.checklist.length) * 100;
+  };
+
   return (
     <div
       ref={setNodeRef}
@@ -52,9 +58,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
         </div>
       )}
 
-      {/* Label */}
-      <div className="task-card__label">
-        <LabelBadge label={task.label} />
+      {/* Label and Progress */}
+      <div className="task-card__label-wrapper">
+        <div className="task-card__label">
+          <LabelBadge label={task.label} />
+        </div>
+        <div className="task-card__progress">
+          <div className="task-card__progress-fill" style={{ width: `${getProgress()}%` }}></div>
+        </div>
       </div>
 
       {/* Title */}
@@ -75,6 +86,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
           <div className="task-card__checklist-count">
             <IonIcon icon={checkboxOutline} />
             <span>{checkedCount}/{totalCount}</span>
+          </div>
+        )}
+
+        {/* Attachment count */}
+        {task.attachments && task.attachments.length > 0 && (
+          <div className="task-card__attachment-count" title="Attachments">
+            <IonIcon icon={attachOutline} />
+            <span>{task.attachments.length}</span>
           </div>
         )}
 

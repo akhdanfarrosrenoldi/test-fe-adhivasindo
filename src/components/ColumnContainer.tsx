@@ -62,9 +62,7 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
             <h3 className="column-title">{column.title}</h3>
           )}
           <span className="column-count">{tasks.length}</span>
-        </div>
-        <div className="column-header-actions">
-          <button className="column-action-btn add-btn" onClick={() => onAddTask(column.id)} title="Add task">
+          <button className="column-action-btn add-btn-small" onClick={() => onAddTask(column.id)} title="Add task">
             <IonIcon icon={addOutline} />
           </button>
           <div className="column-menu-wrapper">
@@ -85,7 +83,9 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
               </>
             )}
           </div>
-          <button className="column-action-btn" title={isExpanded ? "Collapse" : "Expand"} onClick={() => setIsExpanded(!isExpanded)}>
+        </div>
+        <div className="column-header-actions">
+          <button className="column-action-btn expand-btn" title={isExpanded ? "Collapse" : "Expand"} onClick={() => setIsExpanded(!isExpanded)}>
             <IonIcon icon={isExpanded ? contractOutline : expandOutline} />
           </button>
         </div>

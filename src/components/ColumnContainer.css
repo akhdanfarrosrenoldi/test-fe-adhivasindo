@@ -32,7 +32,7 @@
 .column-header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .column-title {
@@ -55,12 +55,7 @@
 }
 
 .column-count {
-  background: #E2E8F0;
-  color: #64748B;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 1px 7px;
-  border-radius: 10px;
+  display: none;
 }
 
 .column-header-actions {
@@ -87,12 +82,26 @@
   color: #475569;
 }
 
-.column-action-btn.add-btn {
+.column-action-btn.add-btn-small {
+  background: #E0F2FE;
   color: #3B82F6;
+  border-radius: 6px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 2px;
 }
 
-.column-action-btn.add-btn:hover {
-  background: #DBEAFE;
+.column-action-btn.add-btn-small ion-icon {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.column-action-btn.add-btn-small:hover {
+  background: #BAE6FD;
 }
 
 .column-menu-wrapper {
@@ -151,18 +160,6 @@
   min-height: 60px;
 }
 
-.column-tasks::-webkit-scrollbar {
-  width: 4px;
-}
-
-.column-tasks::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.column-tasks::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 2px;
-}
 
 .column-empty {
   display: flex;

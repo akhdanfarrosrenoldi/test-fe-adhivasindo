@@ -54,8 +54,8 @@ const ChecklistSection: React.FC<ChecklistSectionProps> = ({
           <div
             className="checklist-progress-fill"
             style={{
-              width: `${progress}%`,
-              backgroundColor: progress === 100 ? '#10B981' : '#3B82F6',
+              width: total === 0 ? '100%' : `${progress}%`,
+              backgroundColor: '#3B82F6',
             }}
           />
         </div>

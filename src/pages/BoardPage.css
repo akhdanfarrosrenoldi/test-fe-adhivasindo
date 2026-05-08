@@ -33,10 +33,10 @@
   gap: 8px;
   width: 100%;
   padding: 14px;
-  border: 2px dashed #CBD5E1;
+  border: none;
   border-radius: 14px;
-  background: transparent;
-  color: #64748B;
+  background: #F1F5F9;
+  color: #334155;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
@@ -44,9 +44,7 @@
 }
 
 .add-column-btn:hover {
-  border-color: #3B82F6;
-  color: #3B82F6;
-  background: rgba(59, 130, 246, 0.05);
+  background: #E2E8F0;
 }
 
 .add-column-btn ion-icon { font-size: 18px; }
