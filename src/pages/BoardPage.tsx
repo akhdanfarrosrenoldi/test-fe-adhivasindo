@@ -24,7 +24,7 @@ import CreateTaskModal from '../components/CreateTaskModal';
 import './BoardPage.css';
 
 const BoardPage: React.FC = () => {
-  const { columns, getFilteredTasksByColumn, moveTask, addColumn } = useTaskStore();
+  const { columns, getFilteredTasksByColumn, moveTask, addColumn, tasks, filters } = useTaskStore();
   const [activeTask, setActiveTask] = useState<Task | null>(null);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -44,7 +44,7 @@ const BoardPage: React.FC = () => {
       map[col.id] = getFilteredTasksByColumn(col.id);
     });
     return map;
-  }, [columns, getFilteredTasksByColumn]);
+  }, [columns, getFilteredTasksByColumn, tasks, filters]);
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;

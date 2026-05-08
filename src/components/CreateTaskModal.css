@@ -13,6 +13,7 @@
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
+  max-height: 90vh;
 }
 
 .create-modal-header {
@@ -33,6 +34,8 @@
 .create-modal-body {
   padding: 24px;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .create-field {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { IonIcon } from '@ionic/react';
-import { addOutline, ellipsisVerticalOutline, expandOutline, createOutline, trashOutline, closeOutline } from 'ionicons/icons';
+import { addOutline, ellipsisVerticalOutline, expandOutline, contractOutline, createOutline, trashOutline, closeOutline } from 'ionicons/icons';
 import { Task, Column } from '../models/types';
 import { useTaskStore } from '../store/useTaskStore';
 import TaskCard from './TaskCard';
@@ -20,6 +20,7 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
   const [showMenu, setShowMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(column.title);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const { setNodeRef, isOver } = useDroppable({
     id: column.id,
@@ -43,7 +44,7 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
   };
 
   return (
-    <div className={`column-container ${isOver ? 'column-container--over' : ''}`}>
+    <div className={`column-container ${isOver ? 'column-container--over' : ''} ${isExpanded ? 'column-container--expanded' : ''}`}>
       {/* Column Header */}
       <div className="column-header">
         <div className="column-header-left">
@@ -84,8 +85,8 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
               </>
             )}
           </div>
-          <button className="column-action-btn" title="Expand">
-            <IonIcon icon={expandOutline} />
+          <button className="column-action-btn" title={isExpanded ? "Collapse" : "Expand"} onClick={() => setIsExpanded(!isExpanded)}>
+            <IonIcon icon={isExpanded ? contractOutline : expandOutline} />
           </button>
         </div>
       </div>
