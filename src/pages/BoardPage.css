@@ -5,8 +5,9 @@
 .board-columns-wrapper {
   overflow-x: auto;
   overflow-y: hidden;
-  height: calc(100vh - 120px);
-  padding: 20px 24px 20px 24px;
+  height: calc(100% - 65px);
+  padding: 20px 24px 0 24px;
+  box-sizing: border-box;
 }
 
 .board-columns {
@@ -15,6 +16,8 @@
   align-items: flex-start;
   min-width: min-content;
   height: 100%;
+  padding-bottom: 20px;
+  box-sizing: border-box;
 }
 
 /* Add column */
