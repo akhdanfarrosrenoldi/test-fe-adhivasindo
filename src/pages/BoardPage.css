@@ -1,0 +1,94 @@
+.board-content {
+  --background: #F0F2F5;
+}
+
+.board-columns-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: calc(100vh - 120px);
+  padding: 20px 24px 20px 24px;
+}
+
+.board-columns {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  min-width: min-content;
+  height: 100%;
+}
+
+/* Add column */
+.add-column-area {
+  flex: 0 0 260px;
+  min-width: 260px;
+}
+
+.add-column-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed #CBD5E1;
+  border-radius: 14px;
+  background: transparent;
+  color: #64748B;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.add-column-btn:hover {
+  border-color: #3B82F6;
+  color: #3B82F6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.add-column-btn ion-icon { font-size: 18px; }
+
+.add-column-form {
+  background: #F6F8FB;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.add-column-form input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #3B82F6;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1E293B;
+  outline: none;
+  background: #fff;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.add-column-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Drag overlay */
+.drag-overlay-card {
+  transform: rotate(3deg);
+  opacity: 0.95;
+  cursor: grabbing;
+}
+
+.drag-overlay-card .task-card {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .board-columns-wrapper {
+    padding: 12px 12px;
+  }
+  .board-columns {
+    gap: 12px;
+  }
+}

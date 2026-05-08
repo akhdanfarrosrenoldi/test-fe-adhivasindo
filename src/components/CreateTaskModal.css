@@ -1,0 +1,145 @@
+.create-task-modal {
+  --width: 520px;
+  --max-width: 95vw;
+  --height: auto;
+  --max-height: 90vh;
+  --border-radius: 16px;
+  --box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.create-modal-content {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.create-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.create-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.create-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.create-field {
+  margin-bottom: 16px;
+}
+
+.create-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  margin-bottom: 6px;
+}
+
+.create-field input[type="text"],
+.create-field input[type="date"],
+.create-field textarea,
+.create-field select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #334155;
+  background: #F8FAFC;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.create-field input:focus,
+.create-field textarea:focus,
+.create-field select:focus {
+  border-color: #3B82F6;
+  background: #fff;
+}
+
+.create-field textarea {
+  resize: vertical;
+}
+
+.create-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.create-assignee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.create-assignee-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.create-assignee-chip:hover {
+  border-color: #3B82F6;
+  background: #EFF6FF;
+}
+
+.create-assignee-chip.selected {
+  border-color: #3B82F6;
+  background: #DBEAFE;
+}
+
+.create-assignee-chip input[type="checkbox"] {
+  display: none;
+}
+
+.chip-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.create-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #F1F5F9;
+}
+
+@media (max-width: 600px) {
+  .create-field-row {
+    grid-template-columns: 1fr;
+  }
+  .create-assignee-grid {
+    grid-template-columns: 1fr;
+  }
+}

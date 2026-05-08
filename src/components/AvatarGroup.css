@@ -1,0 +1,90 @@
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-group--sm .avatar-item {
+  width: 28px;
+  height: 28px;
+  font-size: 10px;
+  margin-left: -8px;
+}
+
+.avatar-group--md .avatar-item {
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  margin-left: -10px;
+}
+
+.avatar-group--lg .avatar-item {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  margin-left: -12px;
+}
+
+.avatar-group .avatar-item:first-child {
+  margin-left: 0;
+}
+
+.avatar-item {
+  position: relative;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transition: transform 0.15s ease;
+}
+
+.avatar-item:hover {
+  transform: translateY(-2px);
+  z-index: 999 !important;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.avatar-remaining {
+  background: #E5E7EB;
+  color: #6B7280;
+  font-weight: 600;
+}
+
+.avatar-add-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px dashed #CBD5E1;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 4px;
+  color: #94A3B8;
+  transition: all 0.2s ease;
+}
+
+.avatar-add-btn:hover {
+  border-color: #3B82F6;
+  color: #3B82F6;
+  background: #EFF6FF;
+}
