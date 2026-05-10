@@ -35,7 +35,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   useEffect(() => {
-    if (task) {
+    if (task && isOpen) {
       setEditTitle(task.title);
       setEditDescription(task.description);
       setEditLabel(task.label);
@@ -49,7 +49,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
       setShowAssigneeDropdown(false);
       setShowDeleteConfirm(false);
     }
-  }, [task]);
+  }, [task?.id, task?.updatedAt, isOpen]);
 
   if (!task) return null;
 
