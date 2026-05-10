@@ -49,8 +49,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
     setToastMessage('Task updated successfully!');
     setToastColor('success');
     setShowToast(true);
-    onClose();
-  }, [task?.id, editTitle, editDescription, editLabel, editPriority, editDueDate, editColumnId, editAssignees, editCoverImage, updateTask, onClose]);
+  }, [task?.id, editTitle, editDescription, editLabel, editPriority, editDueDate, editColumnId, editAssignees, editCoverImage, updateTask]);
 
   const handleDelete = useCallback(() => {
     if (!task) return;
@@ -108,7 +107,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
       setShowAssigneeDropdown(false);
       setShowDeleteConfirm(false);
     }
-  }, [task?.id, isOpen]);
+  }, [task?.id, task?.title, task?.description, task?.label, task?.priority, task?.dueDate, task?.columnId, task?.assignees, task?.coverImage, isOpen]);
 
   // Reset toast hanya saat task id berubah (klik task lain), bukan saat modal open/close
   useEffect(() => {
@@ -259,7 +258,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({ task, isOpen, onClose
           </div>
         )}
       </IonModal>
-      <IonToast isOpen={showToast} onDidDismiss={() => setShowToast(false)} message={toastMessage} duration={2500} color={toastColor} position="top" />
+      <IonToast isOpen={showToast} onDidDismiss={() => { setShowToast(false); onClose(); }} message={toastMessage} duration={2500} color={toastColor} position="top" />
     </>
   );
 };
