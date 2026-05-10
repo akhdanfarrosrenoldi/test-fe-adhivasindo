@@ -158,6 +158,14 @@
   flex-direction: column;
   gap: 10px;
   min-height: 60px;
+  
+  /* Hide scrollbar but keep scroll functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.column-tasks::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 
