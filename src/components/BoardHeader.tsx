@@ -7,11 +7,9 @@ import FilterBar from './FilterBar';
 import './BoardHeader.css';
 
 const BoardHeader: React.FC = () => {
-  const { members, filters, setFilters, exportData, importData, addMember } = useTaskStore();
+  const { members, filters, setFilters, exportData, importData } = useTaskStore();
   const [showFilter, setShowFilter] = useState(false);
   const [showExportMenu, setShowExportMenu] = useState(false);
-  const [showInviteMenu, setShowInviteMenu] = useState(false);
-  const [inviteName, setInviteName] = useState('');
   const [searchValue, setSearchValue] = useState(filters.search);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
@@ -59,17 +57,6 @@ const BoardHeader: React.FC = () => {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const handleInvite = () => {
-    if (inviteName.trim()) {
-      addMember(inviteName.trim());
-      setInviteName('');
-      setShowInviteMenu(false);
-      setToastMessage(`${inviteName.trim()} invited to the board!`);
-      setToastColor('success');
-      setShowToast(true);
-    }
-  };
-
   const hasActiveFilters = filters.assignees.length > 0 || filters.labels.length > 0 || filters.dueDateRange !== 'all' || filters.priorities.length > 0;
 
   return (
@@ -84,31 +71,10 @@ const BoardHeader: React.FC = () => {
           <div className="board-team">
             <AvatarGroup memberIds={members.map((m) => m.id)} maxDisplay={5} size="md" />
           </div>
-          <div className="invite-wrapper">
-            <button className="header-btn" onClick={() => setShowInviteMenu(!showInviteMenu)}>
-              <IonIcon icon={personAddOutline} />
-              <span>Invite</span>
-            </button>
-            {showInviteMenu && (
-              <>
-                <div className="invite-backdrop" onClick={() => setShowInviteMenu(false)} />
-                <div className="invite-menu">
-                  <h4>Invite to Board</h4>
-                  <input
-                    type="text"
-                    placeholder="Enter name..."
-                    value={inviteName}
-                    onChange={(e) => setInviteName(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') handleInvite(); if (e.key === 'Escape') setShowInviteMenu(false); }}
-                    autoFocus
-                  />
-                  <div className="invite-actions">
-                    <button className="btn-save" onClick={handleInvite} disabled={!inviteName.trim()}>Send Invite</button>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+          <button className="header-btn">
+            <IonIcon icon={personAddOutline} />
+            <span>Invite</span>
+          </button>
         </div>
 
         <div className="board-header-right">

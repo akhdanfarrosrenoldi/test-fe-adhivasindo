@@ -33,9 +33,6 @@ interface TaskStore {
   updateColumn: (id: string, title: string) => void;
   deleteColumn: (id: string) => void;
 
-  // Members
-  addMember: (name: string, color?: string) => void;
-
   // Filters
   setFilters: (filters: Partial<Filters>) => void;
   clearFilters: () => void;
@@ -297,18 +294,6 @@ export const useTaskStore = create<TaskStore>()(
           columns: state.columns.filter((c) => c.id !== id),
           tasks: state.tasks.filter((t) => t.columnId !== id),
         }));
-      },
-
-      addMember: (name, color) => {
-        const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#ff9800', '#ff5722'];
-        const randomColor = color || colors[Math.floor(Math.random() * colors.length)];
-        const newMember: TeamMember = {
-          id: uuidv4(),
-          name,
-          avatar: '',
-          color: randomColor,
-        };
-        set((state) => ({ members: [...state.members, newMember] }));
       },
 
       setFilters: (newFilters) => {

@@ -22,8 +22,6 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
   const [editTitle, setEditTitle] = useState(column.title);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-
   const { setNodeRef, isOver } = useDroppable({
     id: column.id,
     data: { type: 'column', column },
@@ -38,14 +36,11 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
     setIsEditing(false);
   };
 
-  const handleDeleteClick = () => {
-    setShowDeleteConfirm(true);
+  const handleDelete = () => {
+    if (window.confirm(`Delete column "${column.title}" and all its tasks?`)) {
+      deleteColumn(column.id);
+    }
     setShowMenu(false);
-  };
-
-  const confirmDelete = () => {
-    deleteColumn(column.id);
-    setShowDeleteConfirm(false);
   };
 
   return (
@@ -81,7 +76,7 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
                   <button onClick={() => { setIsEditing(true); setShowMenu(false); }}>
                     <IonIcon icon={createOutline} /><span>Rename</span>
                   </button>
-                  <button className="danger" onClick={handleDeleteClick}>
+                  <button className="danger" onClick={handleDelete}>
                     <IonIcon icon={trashOutline} /><span>Delete</span>
                   </button>
                 </div>
@@ -95,17 +90,6 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
           </button>
         </div>
       </div>
-
-      {/* Delete Confirmation Banner */}
-      {showDeleteConfirm && (
-        <div className="column-delete-banner">
-          <p>Delete "{column.title}" and all tasks?</p>
-          <div className="column-delete-actions">
-            <button className="btn-cancel" onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
-            <button className="btn-confirm" onClick={confirmDelete}>Delete</button>
-          </div>
-        </div>
-      )}
 
       {/* Task List */}
       <div ref={setNodeRef} className="column-tasks">
@@ -129,4 +113,4 @@ const ColumnContainer: React.FC<ColumnContainerProps> = ({ column, tasks, onTask
   );
 };
 
-export default React.memo(ColumnContainer);
+export default ColumnContainer;

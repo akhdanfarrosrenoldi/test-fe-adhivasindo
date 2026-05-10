@@ -26,4 +26,4 @@ const LabelBadge: React.FC<LabelBadgeProps> = ({ label, size = 'sm' }) => {
   );
 };
 
-export default React.memo(LabelBadge);
+export default LabelBadge;

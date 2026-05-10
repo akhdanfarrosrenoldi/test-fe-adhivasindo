@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { IonPage, IonContent, IonIcon, IonToast } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import {
@@ -24,12 +24,7 @@ import CreateTaskModal from '../components/CreateTaskModal';
 import './BoardPage.css';
 
 const BoardPage: React.FC = () => {
-  const columns = useTaskStore((state) => state.columns);
-  const filters = useTaskStore((state) => state.filters);
-  const getFilteredTasksByColumn = useTaskStore((state) => state.getFilteredTasksByColumn);
-  const moveTask = useTaskStore((state) => state.moveTask);
-  const addColumn = useTaskStore((state) => state.addColumn);
-  
+  const { columns, getFilteredTasksByColumn, moveTask, addColumn, tasks, filters } = useTaskStore();
   const [activeTask, setActiveTask] = useState<Task | null>(null);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -49,15 +44,15 @@ const BoardPage: React.FC = () => {
       map[col.id] = getFilteredTasksByColumn(col.id);
     });
     return map;
-  }, [columns.length, filters.search, filters.assignees, filters.labels, filters.dueDateRange, filters.priorities]);
+  }, [columns, getFilteredTasksByColumn, tasks, filters]);
 
-  const handleDragStart = useCallback((event: DragStartEvent) => {
+  const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
     const task = active.data.current?.task as Task;
     if (task) setActiveTask(task);
-  }, []);
+  };
 
-  const handleDragEnd = useCallback((event: DragEndEvent) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     setActiveTask(null);
 
@@ -86,33 +81,28 @@ const BoardPage: React.FC = () => {
     if (activeTask.id !== over.id || activeTask.columnId !== targetColumnId) {
       moveTask(activeTask.id, targetColumnId, newIndex);
     }
-  }, [columnTasks, moveTask]);
+  };
 
-  const handleTaskClick = useCallback((task: Task) => {
+  const handleTaskClick = (task: Task) => {
     setSelectedTask(task);
     setShowDetailModal(true);
-  }, []);
+  };
 
-  const handleAddTask = useCallback((columnId: string) => {
+  const handleAddTask = (columnId: string) => {
     setCreateColumnId(columnId);
     setShowCreateModal(true);
-  }, []);
+  };
 
-  const handleAddColumn = useCallback(() => {
+  const handleAddColumn = () => {
     if (newColumnTitle.trim()) {
       addColumn(newColumnTitle.trim());
       setNewColumnTitle('');
       setShowAddColumn(false);
     }
-  }, [newColumnTitle, addColumn]);
+  };
 
-  // Hook harus unconditional - ambil tasks dari store
-  const allTasks = useTaskStore((s) => s.tasks);
-  
-  // Kemudian filter untuk get current selected task
-  const currentSelectedTask = showDetailModal && selectedTask
-    ? allTasks.find((t) => t.id === selectedTask.id) || null
-    : null;
+  // Re-fetch selected task from store to get latest data
+  const currentSelectedTask = useTaskStore((s) => s.tasks.find((t) => t.id === selectedTask?.id) || null);
 
   return (
     <IonPage>

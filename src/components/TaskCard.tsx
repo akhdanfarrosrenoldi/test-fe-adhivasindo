@@ -112,4 +112,4 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
   );
 };
 
-export default React.memo(TaskCard);
+export default TaskCard;
