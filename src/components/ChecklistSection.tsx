@@ -124,4 +124,4 @@ const ChecklistSection: React.FC<ChecklistSectionProps> = ({
   );
 };
 
-export default ChecklistSection;
+export default React.memo(ChecklistSection);

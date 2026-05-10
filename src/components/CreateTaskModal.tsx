@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IonModal, IonIcon, IonToast } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import { Label, Priority } from '../models/types';
@@ -23,6 +23,12 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ isOpen, columnId, onC
   const [dueDate, setDueDate] = useState('');
   const [selectedAssignees, setSelectedAssignees] = useState<string[]>([]);
   const [targetColumnId, setTargetColumnId] = useState(columnId);
+
+  useEffect(() => {
+    if (isOpen && columnId) {
+      setTargetColumnId(columnId);
+    }
+  }, [isOpen, columnId]);
   const [showToast, setShowToast] = useState(false);
 
   const resetForm = () => {
