@@ -44,24 +44,32 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
             key={mId}
             className="avatar-item"
             style={{ zIndex: displayMembers.length - i }}
-            title={member.name}
+            data-tooltip={member.name}
           >
-            {member.avatar ? (
-              <img src={member.avatar} alt={member.name} className="avatar-img" />
-            ) : (
-              <div
-                className="avatar-initials"
-                style={{ backgroundColor: member.color }}
-              >
-                {getInitials(member.name)}
-              </div>
-            )}
+            <div className="avatar-content">
+              {member.avatar ? (
+                <img src={member.avatar} alt={member.name} className="avatar-img" />
+              ) : (
+                <div
+                  className="avatar-initials"
+                  style={{ backgroundColor: member.color }}
+                >
+                  {getInitials(member.name)}
+                </div>
+              )}
+            </div>
           </div>
         );
       })}
       {remaining > 0 && (
-        <div className="avatar-item avatar-remaining" style={{ zIndex: 0 }}>
-          +{remaining}
+        <div 
+          className="avatar-item avatar-remaining" 
+          style={{ zIndex: 0 }}
+          data-tooltip={memberIds.slice(maxDisplay).map(id => getMember(id)?.name).filter(Boolean).join('\n')}
+        >
+          <div className="avatar-content">
+            +{remaining}
+          </div>
         </div>
       )}
       {onAdd && (
